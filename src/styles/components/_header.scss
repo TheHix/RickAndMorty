@@ -1,0 +1,56 @@
+.dropdown-btn {
+    padding: 10px 15px;
+    transition: all 0.1s ease;
+    min-height: 40px;
+    border-radius: 10px;
+    &:hover {
+        background: #ffffffa4;
+    }
+    &:not(:last-child) {
+        margin-right: 15px; 
+    }
+}
+
+.header {
+    height: 80px;
+    &__body {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+    &__bg {
+        height: 100%;
+        background: black;
+    }
+
+    &__container {
+        height: 100%;
+    }
+
+    &__dropdown {
+        margin-left: auto;
+        display: flex;
+    }
+
+    &__logo {
+        height: 65px;
+        margin-right: 100px;
+        & img {
+            height: 100%;
+        }
+    }
+
+    &__search {
+        font-size: 16px;
+        color: #FFFFFF;
+        background: black;
+        border-bottom: 1px solid #FFFFFF;
+        max-width: 330px;
+        flex: 1;
+        height: 30px;
+        padding: 0px 15px;
+        &::placeholder {
+            color: #FFFFFF;
+        }
+    }
+}
