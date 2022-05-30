@@ -1,1 +1,31 @@
 @import "normalize";
+@import "./components/header";
+@import "./components/season";
+body {
+  background: #e6e6e6;
+  line-height: 1;
+  font-size: 16px;
+  color: black;
+  font-family: 'Roboto';
+}
+
+#root {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1421px;
+  margin: 0 auto;
+  padding: 0px 15px;
+  box-sizing: content-box;
+}
+main {
+  flex: 1 1 auto;
+}

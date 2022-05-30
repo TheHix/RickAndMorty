@@ -1,0 +1,35 @@
+.season {
+    margin-bottom: 20px;
+    &__title {
+        font-size: 26px;
+        margin-bottom: 10px;
+    }
+
+    &__episodes {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 15px;
+    }
+}
+
+.episode {
+    border-radius: 20px;
+    background: #FFFFFF;
+    padding: 15px;
+    
+    &:hover {
+        box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+        cursor: pointer;
+    }
+    &__item {
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+        &-number {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    }
+}
+
+.season_episode {}
