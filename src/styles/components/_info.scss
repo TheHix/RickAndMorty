@@ -4,7 +4,9 @@
     background: #FFFFFFFF;
     border-radius: 20px;
     align-items: center;
-
+    @media screen and (max-width: 500px) {
+        flex-direction: column;
+    }
     &__img {
         margin-right: 60px;
         height: 180px;
@@ -12,7 +14,11 @@
         & img {
             height: 100%;
             border-radius: 20px;
+            @media screen and (max-width: 500px) {
+                margin-bottom: 5px;
+            }
         }
+        
     }
 
     &__text {
@@ -33,6 +39,12 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
+        @media screen and (max-width: 1460px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media screen and (max-width: 1110px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
     }
 }
 
