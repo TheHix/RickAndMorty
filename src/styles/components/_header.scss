@@ -36,6 +36,9 @@
     &__logo {
         height: 65px;
         margin-right: 100px;
+        &:hover {
+            cursor: pointer;
+        }
         & img {
             height: 100%;
         }
