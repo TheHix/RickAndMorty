@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../img/logo.png';
 const Header = () => {
     return (
@@ -6,9 +7,9 @@ const Header = () => {
             <div className="header__bg">
                 <div className="header__container container">
                     <div className="header__body">
-                        <div className="header__logo">
+                        <Link to="/" className="header__logo">
                             <img src={logo} alt="" />
-                        </div>
+                        </Link>
                         <input type="text" className="header__search" placeholder='Найти серию'/>
                         <div className="header__dropdown dropdown">
                             <button className="dropdown__info dropdown-btn">Выбрать сезон</button>

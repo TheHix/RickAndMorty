@@ -6,7 +6,6 @@ import {
   $seasones,
   addSeason,
   getSeasonFx,
-  clearSeasones,
 } from "../store/store";
 import { ISeason } from "../Types/episodes";
 

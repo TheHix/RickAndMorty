@@ -1,11 +1,11 @@
 import React from 'react';
 
-const info = () => {
+const Info = () => {
     return (
         <main className='main'>
-
+            dsfsdf
         </main>
     );
 };
 
-export default info;
+export default Info;
