@@ -7,9 +7,51 @@
     &:hover {
         background: #ffffffa4;
     }
+}
 
-    &:not(:last-child) {
-        margin-right: 15px;
+.dropdown {
+    &-block {
+        position: relative;
+
+        &:not(:last-child) {
+            margin-right: 15px;
+        }
+    }
+}
+
+.btn-sort {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    width: fit-content;
+    background: #FFFFFF;
+    position: absolute;
+    top: 50px;
+    left: 5px;
+    border-radius: 5px;
+    border: 1px solid black;
+
+    &__item {
+        height: 100%;
+        margin-bottom: 5px;
+        padding: 8px 15px;
+
+        cursor: pointer;
+
+        & input {
+            margin-right: 3px;
+            cursor: pointer;
+        }
+
+        & label {
+            cursor: pointer;
+        }
+
+        &:not(:last-child) {
+            border-bottom: 1px solid black;
+        }
+
     }
 }
 
@@ -47,21 +89,6 @@
 
         & img {
             height: 100%;
-        }
-    }
-
-    &__search {
-        font-size: 16px;
-        color: #FFFFFF;
-        background: black;
-        border-bottom: 1px solid #FFFFFF;
-        max-width: 330px;
-        flex: 1;
-        height: 30px;
-        padding: 0px 15px;
-
-        &::placeholder {
-            color: #FFFFFF;
         }
     }
 }

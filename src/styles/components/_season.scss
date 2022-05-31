@@ -1,24 +1,40 @@
 .season {
     margin-bottom: 20px;
 
-    &__title {
-        font-size: 26px;
-        margin-bottom: 10px;
+    &__search {
+        font-size: 16px;
+        max-width: 330px;
+        height: 30px;
+        padding: 0px 15px;
+        border-radius: 10px;
     }
 
+    &__title {
+        font-size: 26px;
+        margin-right: 40px;
+    }
+    &__title-block {
+        margin-right: 30px;
+        margin-bottom: 15px;
+        display: flex;
+    }
     &__episodes {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 15px;
+
         @media screen and (max-width: 1440px) {
             grid-template-columns: repeat(4, 1fr);
         }
+
         @media screen and (max-width: 1170px) {
             grid-template-columns: repeat(3, 1fr);
         }
+
         @media screen and (max-width: 850px) {
             grid-template-columns: repeat(2, 1fr);
         }
+
         @media screen and (max-width: 460px) {
             grid-template-columns: repeat(1, 1fr);
         }
