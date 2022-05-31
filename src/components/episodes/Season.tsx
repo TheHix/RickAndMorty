@@ -1,5 +1,5 @@
 import React from 'react';
-import { IEpisode } from '../Types/episodes';
+import { IEpisode } from '../../Types/episodes';
 import SeasonEpisode from './SeasonEpisode';
 interface SeasonProps {
     seasonNumber:string
