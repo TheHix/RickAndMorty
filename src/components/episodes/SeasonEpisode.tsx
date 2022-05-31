@@ -8,12 +8,9 @@ interface SeasonEpisodeProps {
 const SeasonEpisode: React.FC<SeasonEpisodeProps> = ({ item, number }) => {
   const { episode, air_date, name, characters, id } = item;
   const url = useLocation();
-  
+
   return (
-    <Link
-      to={`${url.pathname}info/${id}`}
-      className="season__episode episode"
-    >
+    <Link to={`${url.pathname}info/${id}`} className="season__episode episode">
       <div className="episode__item episode__item-number">{number} эпизод</div>
       <div className="episode__item">{name}</div>
       <div className="episode__item">Дата выхода: {air_date}</div>

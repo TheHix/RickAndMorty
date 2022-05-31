@@ -1,13 +1,16 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import { IEpisode } from "../Types/episodes";
 interface SeasonEpisodeProps {
   item: IEpisode;
   number: number;
 }
 const SeasonEpisode: React.FC<SeasonEpisodeProps> = ({ item, number }) => {
-  const { episode, air_date, name, characters } = item;
+  const { episode, air_date, name, characters, id } = item;
+  const url = useLocation();
+
   return (
-    <div className="season__episode episode">
+    <Link to={`${url.pathname}info/${id}`} className="season__episode episode">
       <div className="episode__item episode__item-number">{number} эпизод</div>
       <div className="episode__item">{name}</div>
       <div className="episode__item">Дата выхода: {air_date}</div>
@@ -15,7 +18,7 @@ const SeasonEpisode: React.FC<SeasonEpisodeProps> = ({ item, number }) => {
         Количество персонажей: {characters.length}
       </div>
       <div className="episode__item">ID: {episode}</div>
-    </div>
+    </Link>
   );
 };
 

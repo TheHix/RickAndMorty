@@ -14,10 +14,10 @@ export interface ISeason {
 export interface ICharacterInfo {
   image: string;
   name: string;
-  status:string;
-  species:string;
+  status: string;
+  species: string;
   gender: string;
   location: {
-    name: string
-  }
+    name: string;
+  };
 }

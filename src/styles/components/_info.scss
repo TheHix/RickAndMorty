@@ -4,9 +4,11 @@
     background: #FFFFFFFF;
     border-radius: 20px;
     align-items: center;
+
     &__img {
         margin-right: 60px;
         height: 180px;
+
         & img {
             height: 100%;
             border-radius: 20px;
@@ -26,6 +28,7 @@
         font-size: 36px;
         margin-bottom: 30px;
     }
+
     &__body {
         display: grid;
         grid-template-columns: repeat(3, 1fr);

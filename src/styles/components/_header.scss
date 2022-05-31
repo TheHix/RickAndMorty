@@ -3,22 +3,26 @@
     transition: all 0.1s ease;
     min-height: 40px;
     border-radius: 10px;
+
     &:hover {
         background: #ffffffa4;
     }
+
     &:not(:last-child) {
-        margin-right: 15px; 
+        margin-right: 15px;
     }
 }
 
 .header {
     margin-bottom: 30px;
     height: 80px;
+
     &__body {
         height: 100%;
         display: flex;
         align-items: center;
     }
+
     &__bg {
         height: 100%;
         background: black;
@@ -36,6 +40,11 @@
     &__logo {
         height: 65px;
         margin-right: 100px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
         & img {
             height: 100%;
         }
@@ -50,6 +59,7 @@
         flex: 1;
         height: 30px;
         padding: 0px 15px;
+
         &::placeholder {
             color: #FFFFFF;
         }

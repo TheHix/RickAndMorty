@@ -4,16 +4,18 @@ interface CharacterInstanceProps {
   url: string;
 }
 const CharacterInstance: React.FC<CharacterInstanceProps> = ({ url }) => {
-  const [characterInfo, setcharacterInfo] = useState<ICharacterInfo | null>(null);
+  const [characterInfo, setcharacterInfo] = useState<ICharacterInfo | null>(
+    null
+  );
 
   const getCharacterInfo = async (url: string) => {
     const res = await fetch(url);
     const json = await res.json();
     setcharacterInfo(json);
   };
-  
+
   useEffect(() => {
-    getCharacterInfo(url)
+    getCharacterInfo(url);
   }, []);
 
   return (
