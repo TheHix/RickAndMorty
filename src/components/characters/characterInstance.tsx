@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { ICharacterInfo } from "../../Types/episodes";
 interface CharacterInstanceProps {
   url: string;
 }
 const CharacterInstance: React.FC<CharacterInstanceProps> = ({ url }) => {
-  const [characterInfo, setcharacterInfo] = useState<ICharacterInfo | null>(
-    null
-  );
-
+  const [characterInfo, setCharacterInfo] = useState<ICharacterInfo | null>(null);
   const getCharacterInfo = async (url: string) => {
     const res = await fetch(url);
     const json = await res.json();
-    setcharacterInfo(json);
+    setCharacterInfo(json);
   };
+  
+  const { id } = useParams();
+  const currentPath = useLocation()
 
   useEffect(() => {
     getCharacterInfo(url);
   }, []);
-
+  
   return (
-    <div className="info__character character">
+    <Link to={`${currentPath.pathname}${id}/detalis`} className="info__character character">
       {characterInfo !== null ? (
         <>
           <div className="character__img">
@@ -46,7 +47,7 @@ const CharacterInstance: React.FC<CharacterInstanceProps> = ({ url }) => {
       ) : (
         <div>загрузка...</div>
       )}
-    </div>
+    </Link>
   );
 };
 

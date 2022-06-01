@@ -1,4 +1,5 @@
 .character {
+    color: inherit;
     cursor: pointer;
     display: flex;
     background: #FFFFFFFF;
@@ -33,15 +34,13 @@
         text-align: center;
         font-size: 36px;
         margin-bottom: 30px;
+        white-space: nowrap;
     }
 
     &__body {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 20px;
-        @media screen and (max-width: 1460px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
         @media screen and (max-width: 1110px) {
             grid-template-columns: repeat(1, 1fr);
         }

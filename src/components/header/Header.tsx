@@ -5,10 +5,10 @@ import DropDownInfo from "./dropDown/DropDownInfo";
 
 const Header: React.FC = () => {
   const [dropDownInfo, setDropDownInfo] = useState(false);
-  
+
   const wrapperRef = useRef<any>(null);
   const url = useLocation();
-  
+
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -47,10 +47,6 @@ const Header: React.FC = () => {
                     <option className="btn-sort__item">по названию</option>
                   </select>
                 </div>
-              </div>
-            ) : url.pathname.slice(0, 5) === "/info" ? (
-              <div className="header__locations-btn">
-                Узнать все локации
               </div>
             ) : null}
           </div>

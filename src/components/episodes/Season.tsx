@@ -7,7 +7,7 @@ interface SeasonProps {
   seasoneInfo: IEpisode[];
 }
 const Season: React.FC<SeasonProps> = ({ seasonNumber, seasoneInfo }) => {
-  const [episodes, setEpisodes] = useState(seasoneInfo);
+  const [episodes, ] = useState(seasoneInfo);
   const [value, setValue] = useState("");
 
   const foundEpisodes = useMemo(() => {

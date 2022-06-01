@@ -5,6 +5,7 @@ import { IEpisode, ISeason } from "../Types/episodes";
 export const addSeason = createEvent<ISeason>();
 export const seasonsFilter = createEvent<number>();
 export const season = createEvent<IEpisode>();
+export const setCharacterInfo = createEvent();
 
 export const getSeasonFx = createEffect(async (page: number = 1) => {
   try {

@@ -27,6 +27,7 @@ const Home: React.FC = () => {
       getNumberOfSeasons();
     }
   }, []);
+  
   return (
     <main className="main">
       <div className="main__info info">
