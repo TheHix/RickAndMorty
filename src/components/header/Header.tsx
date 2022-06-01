@@ -1,10 +1,25 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../../img/logo.png";
-import DropDownInfo from "./dropDown/dropDownInfo";
-import DropDownSort from "./dropDown/dropDownSort";
-const Header = () => {
+import DropDownInfo from "./dropDown/DropDownInfo";
+
+const Header: React.FC = () => {
   const [dropDownInfo, setDropDownInfo] = useState(false);
+  
+  const wrapperRef = useRef<any>(null);
+  const url = useLocation();
+  
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setDropDownInfo(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [wrapperRef]);
   return (
     <header className="header">
       <div className="header__bg">
@@ -13,25 +28,31 @@ const Header = () => {
             <Link to="/" className="header__logo">
               <img src={logo} alt="" />
             </Link>
-            <div className="header__dropdown dropdown">
-              <div className="dropdown-block">
-                <button
-                  onClick={() => setDropDownInfo(!dropDownInfo)}
-                  className="dropdown__info-btn dropdown-btn"
-                >
-                  Выбрать сезон
-                </button>
-                {dropDownInfo && <DropDownInfo />}
+            {url.pathname === "/" ? (
+              <div className="header__dropdown dropdown">
+                <div className="dropdown-block" ref={wrapperRef}>
+                  <button
+                    onClick={e => {
+                      setDropDownInfo(!dropDownInfo);
+                    }}
+                    className="dropdown__info-btn dropdown-btn"
+                  >
+                    Выбрать сезон
+                  </button>
+                  {dropDownInfo && <DropDownInfo />}
+                </div>
+                <div className="dropdown-block">
+                  <select className="dropdown__sort-btn dropdown-btn btn-sort">
+                    <option className="btn-sort__item">по эпизоду</option>
+                    <option className="btn-sort__item">по названию</option>
+                  </select>
+                </div>
               </div>
-              <div className="dropdown-block">
-                <select className="dropdown__sort-btn dropdown-btn btn-sort">
-                  <option className="btn-sort__item">по эпизоду</option>
-                  <option className="btn-sort__item">
-                    по названию
-                  </option>
-                </select>
+            ) : url.pathname.slice(0, 5) === "/info" ? (
+              <div className="header__locations-btn">
+                Узнать все локации
               </div>
-            </div>
+            ) : null}
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { URL } from "../API/constants";
 import Season from "../components/episodes/Season";
+
 import { $seasones, addSeason, getSeasonFx } from "../store/store";
 import { ISeason } from "../Types/episodes";
 

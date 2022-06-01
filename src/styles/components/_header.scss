@@ -58,7 +58,15 @@
 .header {
     margin-bottom: 30px;
     height: 80px;
-
+    &__locations-btn {
+        font-size: 20px;
+        margin-left: auto;
+        color: #FFFFFF;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
     &__body {
         height: 100%;
         display: flex;

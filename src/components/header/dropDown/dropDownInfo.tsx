@@ -1,8 +1,8 @@
 import React from "react";
 
-const DropDownInfo = () => {
+const DropDownInfo:React.FC = () => {
   return (
-    <ul className="dropdown__info-list dropdown-menu">
+    <ul className="dropdown__info-list dropdown-menu" >
       <li className="dropdown-menu__item">
         <label>
           <input type="checkbox" />1 сезон

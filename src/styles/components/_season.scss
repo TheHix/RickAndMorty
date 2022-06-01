@@ -1,6 +1,8 @@
 .season {
     margin-bottom: 20px;
-
+    &__error {
+        font-size: 20px;
+    }
     &__search {
         font-size: 16px;
         max-width: 330px;

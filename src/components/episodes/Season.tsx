@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { IEpisode } from "../../Types/episodes";
-import SeasonEpisode from "./SeasonEpisode";
+import SeasonEpisode from "../SeasonEpisode";
+
 interface SeasonProps {
   seasonNumber: string;
   seasoneInfo: IEpisode[];
@@ -8,40 +9,46 @@ interface SeasonProps {
 const Season: React.FC<SeasonProps> = ({ seasonNumber, seasoneInfo }) => {
   const [episodes, setEpisodes] = useState(seasoneInfo);
   const [value, setValue] = useState("");
-  
+
   const foundEpisodes = useMemo(() => {
-    return episodes.filter((episode) => {
-      return episode.name.toLowerCase().includes(value.toLowerCase())
-    })
-  }, [value]) 
+    return episodes.filter(episode => {
+      return episode.name.toLowerCase().includes(value.toLowerCase());
+    });
+  }, [value]);
+  
   return (
     <div className="season">
       <div className="season__title-block">
         <div className="season__title">Сезон {seasonNumber}</div>
         <input
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={e => setValue(e.target.value)}
           type="text"
           className="season__search"
           placeholder="Найти серию"
         />
       </div>
-
-      <div className="season__episodes">
-        {foundEpisodes.map((episode: IEpisode) => {
-          return (
-            <SeasonEpisode
-              item={episode}
-              number={
-                episode.id === undefined || episode.id % 20 === 0
-                  ? 20
-                  : episode.id % 20
-              }
-              key={episode.id}
-            />
-          );
-        })}
-      </div>
+      {foundEpisodes.length ? (
+        <div className="season__episodes">
+          {foundEpisodes.map((episode: IEpisode) => {
+            return (
+              <SeasonEpisode
+                item={episode}
+                number={
+                  episode.id === undefined || episode.id % 20 === 0
+                    ? 20
+                    : episode.id % 20
+                }
+                key={episode.id}
+              />
+            );
+          })}
+        </div>
+        
+        
+      ) : (
+        <div className="season__error">Таких серий нет :(</div>
+      )}
     </div>
   );
 };

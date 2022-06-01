@@ -1,10 +1,10 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CharacterInstance from "../components/characters/characterInstance";
+import CharacterInstance from "../components/characters/CharacterInstance";
 import { $characterUrls, getCharactersUrlsFx } from "../store/store";
 
-const Info = () => {
+const CharacterList = () => {
   const characterUrls = useStore($characterUrls);
   const { id } = useParams();
 
@@ -29,4 +29,4 @@ const Info = () => {
   );
 };
 
-export default Info;
+export default CharacterList;
