@@ -1,9 +1,9 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
-import Season from "../components/episodes/Season";
+import Season from "./Season";
 
-import { $seasons, getEpisodeCount } from "../store";
-import { IEpisode } from "../Types/types";
+import { $seasons, getEpisodeCount } from "../../store";
+import { IEpisode } from "../../Types/types";
 
 const Home: React.FC = () => {
   const seasons = useStore($seasons);

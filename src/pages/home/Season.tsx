@@ -1,7 +1,6 @@
-import { useStore } from "effector-react";
 import React, { useMemo, useState } from "react";
 import { IEpisode } from "../../Types/types";
-import SeasonEpisode from "../SeasonEpisode";
+import SeasonEpisode from "./SeasonEpisode";
 
 interface SeasonProps {
   seasonNumber: string;

@@ -1,18 +1,16 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
-import Loader from "../components/Loader";
-import { $currentCharacterInfo, setCurrentCharacterInfo } from "../store";
-import { storage } from "../tools/storage";
+import Loader from "../../components/Loader";
+import { $currentCharacterInfo, setCurrentCharacterInfo } from "../../store";
+import { storage } from "../../tools/storage";
 
 const CharacterDetails: React.FC = () => {
   const currentCharacterInfo = useStore($currentCharacterInfo);
 
   useEffect(() => {
-    if (currentCharacterInfo !== storage.getCurrentCharacterInfo()) {
-      setCurrentCharacterInfo(
-        currentCharacterInfo ?? storage.getCurrentCharacterInfo()
-      );
-    }
+    setCurrentCharacterInfo(
+      currentCharacterInfo ?? storage.getCurrentCharacterInfo()
+    );
   }, []);
   return (
     <main className="main">

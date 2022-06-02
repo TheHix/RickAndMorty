@@ -1,29 +1,18 @@
 import { useStore } from "effector-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CharacterInstance from "../components/characters/CharacterInstance";
-import Loader from "../components/Loader";
-import {
-  $characterInfo,
-  $currentEpisode,
-  setCurrentEpisode,
-  setCurrentId,
-} from "../store";
-import { storage } from "../tools/storage";
-import { ICharacterInfo } from "../Types/types";
+import CharacterList from "./characters/CharacterList";
+import { $currentEpisode, setCurrentEpisode, setCurrentId } from "../../store";
+import { storage } from "../../tools/storage";
 
-const CharacterList: React.FC = () => {
-  const characterInfo = useStore($characterInfo);
+const EpisodeDetails: React.FC = () => {
   const currentEpisode = useStore($currentEpisode);
-
   const { id } = useParams();
 
   useEffect(() => {
-    if (currentEpisode !== storage.getCurrentEpisode()) {
-      setCurrentEpisode(currentEpisode ?? storage.getCurrentEpisode());
-    }
+    setCurrentEpisode(currentEpisode ?? storage.getCurrentEpisode());
   }, []);
-  
+
   useEffect(() => {
     if (id) {
       setCurrentId(+id);
@@ -36,7 +25,7 @@ const CharacterList: React.FC = () => {
         <div className="info__container container">
           <div className="info__body">
             <div className="info__episode episode-info">
-              {currentEpisode?.id ? (
+              {currentEpisode ? (
                 <>
                   <div className="episode-info__item">
                     {currentEpisode?.name}
@@ -55,25 +44,9 @@ const CharacterList: React.FC = () => {
                     ID: {currentEpisode.episode}
                   </div>
                 </>
-              ) : (
-                <Loader />
-              )}
+              ) : null}
             </div>
-            <div className="info__characters characters-info">
-              <h1 className="characters-info__title">Персонажи</h1>
-              <div className="characters-info__body">
-                {characterInfo.map(
-                  (character: ICharacterInfo, index: number) => {
-                    return (
-                      <CharacterInstance
-                        key={index}
-                        characterInfo={character}
-                      />
-                    );
-                  }
-                )}
-              </div>
-            </div>
+            <CharacterList />
           </div>
         </div>
       </div>
@@ -81,4 +54,4 @@ const CharacterList: React.FC = () => {
   );
 };
 
-export default CharacterList;
+export default EpisodeDetails;
