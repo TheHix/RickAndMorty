@@ -5,17 +5,20 @@ import "./styles/App.scss";
 import Home from "./pages/Home";
 import CharacterList from "./pages/CharacterList";
 import CharacterDetails from "./pages/CharacterDetails";
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   return (
     <div className="wrapper">
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="info" element={<CharacterList />} />
-        <Route path="info/:id" element={<CharacterList />} />
-        <Route path="info/:id/detalis" element={<CharacterDetails/>}/>
-        <Route path="*" element={<Navigate to={"/"} replace />} />
-      </Routes>
+      <ScrollToTop>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="info" element={<CharacterList />} />
+          <Route path="info/:id" element={<CharacterList />} />
+          <Route path="info/:id/detalis" element={<CharacterDetails />} />
+          <Route path="*" element={<Navigate to={"/"} replace />} />
+        </Routes>
+      </ScrollToTop>
     </div>
   );
 }
