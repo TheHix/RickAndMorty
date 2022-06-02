@@ -1,13 +1,15 @@
 export interface IEpisode {
-  id?: number;
+  id: number;
   air_date: string;
   name: string;
   episode: string;
   characters: string[];
+  episodeNum?: number;
+  season?: number
 }
 export interface ISeason {
-  info?: {
-    pages?: number;
+  info: {
+    pages: number;
   };
   results: IEpisode[];
 }
@@ -19,8 +21,10 @@ export interface ICharacterInfo {
   gender: string;
   location: {
     name: string;
+    url: string;
   };
   origin: {
     name: string;
   };
+  created: string;
 }
