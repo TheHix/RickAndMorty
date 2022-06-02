@@ -5,12 +5,16 @@
     background: #FFFFFFFF;
     border-radius: 20px;
     align-items: center;
+
     &:hover {
         box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
     }
+
     @media screen and (max-width: 500px) {
         flex-direction: column;
+        padding: 10px 0px;
     }
+
 
     &__img {
         margin-right: 60px;
@@ -38,10 +42,11 @@
     }
 }
 
-.info {
+.characters-info {
+    
     &__title {
         text-align: center;
-        font-size: 36px;
+        font-size: 28px;
         margin-bottom: 30px;
         white-space: nowrap;
     }
@@ -53,6 +58,33 @@
 
         @media screen and (max-width: 1110px) {
             grid-template-columns: repeat(1, 1fr);
+        }
+        @media screen and (max-width: 500px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @media screen and (max-width: 420px) {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
+}
+
+.episode-info {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &__item {
+        &:first-child {
+            font-size: 34px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+        &:not(:first-child) {
+            font-size: 20px;
         }
     }
 }

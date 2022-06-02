@@ -63,6 +63,18 @@
     @media screen and (max-width: 503px) {
         height: 170px;
     }
+    &__back-btn {
+        margin-left: auto;
+        color: #FFFFFF;
+        cursor: pointer;
+        &:hover {
+            text-decoration:underline;
+        }
+        @media screen and (max-width: 503px) {
+            margin-left: 0;
+            align-self: center;
+        }
+    }
     &__locations-btn {
         font-size: 20px;
         margin-left: auto;
