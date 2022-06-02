@@ -3,41 +3,44 @@ import React, { useEffect } from "react";
 import { URL } from "../API/constants";
 import Season from "../components/episodes/Season";
 
-import { $seasones, addSeason, getSeasonFx } from "../store/store";
-import { ISeason } from "../Types/episodes";
+import { $seasons, getEpisodeCountFX } from "../store";
+import { IEpisode, ISeason } from "../Types/types";
 
 const Home: React.FC = () => {
-  const seasones = useStore($seasones);
+  const seasons = useStore($seasons);
+  // const seasones = useStore($seasones)
+  // const getAllSeasons = async (numSeasons: any) => {
+  //   for (let i = 1; i <= numSeasons; i++) {
+  //     addSeason(await getSeasonFx(i));
+  //   }
+  // };
 
-  const getAllSeasons = async (numSeasons: any) => {
-    for (let i = 1; i <= numSeasons; i++) {
-      addSeason(await getSeasonFx(i));
-    }
-  };
-
-  const getNumberOfSeasons = async () => {
-    const result = await fetch(URL.episodes);
-    const json = await result.json();
-    const numSeasons = await json.info.pages;
-    getAllSeasons(numSeasons);
-  };
+  // const getNumberOfSeasons = async () => {
+  //   const result = await fetch(URL.episodes);
+  //   const json = await result.json();
+  //   const numSeasons = await json.info.page;
+  //   getAllSeasons(numSeasons);
+  // };
 
   useEffect(() => {
-    if (!seasones.length) {
-      getNumberOfSeasons();
-    }
+    // if (!seasones.length) {
+    //   getNumberOfSeasons();
+    //   getEpisodeCountFX();
+    // }
+    getEpisodeCountFX();
   }, []);
+  //console.log(getConfidenceIntervalBetweenEpisodes(new Date("June 20, 2021"),new Date("May 31, 2020")));
   
   return (
     <main className="main">
       <div className="main__info info">
         <div className="info__container container">
-          {seasones.map((currentSeasone: ISeason, index: number) => {
+          {seasons.map((currentSeasone: IEpisode[], index: number) => {
             return (
               <Season
                 key={index}
                 seasonNumber={(index + 1).toString()}
-                seasoneInfo={currentSeasone.results}
+                seasoneInfo={currentSeasone}
               />
             );
           })}
