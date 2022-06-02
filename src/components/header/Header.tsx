@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
 import DropDownInfo from "./dropDown/DropDownInfo";
 
@@ -8,7 +8,8 @@ const Header: React.FC = () => {
 
   const wrapperRef = useRef<any>(null);
   const url = useLocation();
-
+  const nav = useNavigate();
+  const goBack = () => nav(-1);
   useEffect(() => {
     const handleClickOutside = (event: any) => {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -48,7 +49,11 @@ const Header: React.FC = () => {
                   </select>
                 </div>
               </div>
-            ) : null}
+            ) : (
+              <div onClick={goBack} className="header__back-btn">
+                Назад
+              </div>
+            )}
           </div>
         </div>
       </div>
