@@ -7,7 +7,7 @@ import {
 } from "effector";
 import { URL } from "../API/constants";
 import { getConfidenceIntervalBetweenEpisodes } from "../tools/date";
-import { ICharacterInfo, IEpisode, ISeason } from "../Types/types";
+import { ICharacterInfo, IEpisode, ILocationInfo, ISeason } from "../Types/types";
 
 export const addSeason = createEvent<ISeason>();
 export const seasonsFilter = createEvent<number>();
@@ -19,6 +19,7 @@ export const getCharactersUrls = createEffect();
 export const setSeasons = createEvent();
 export const assignSeries = createEvent();
 export const getEpisodeCount = createEvent();
+export const setLocationInfoUrl = createEvent<string>();
 
 export const getSeasonFx = createEffect(async (page: number = 1) => {
   try {
@@ -28,6 +29,54 @@ export const getSeasonFx = createEffect(async (page: number = 1) => {
     console.log(error);
   }
 });
+export const getLocationInfoFX = createEffect(async (url: string) => {
+  try {
+    const response = await fetch(url);
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+});
+const $locationInfoUrl = createStore<string>("").on(
+  setLocationInfoUrl,
+  (_, url) => url
+);
+
+export const $locationInfo = createStore<ILocationInfo | null>(null).on(
+  getLocationInfoFX.doneData,
+  (_, locationInfo) => locationInfo
+);
+const getCharacterInfoAtCurrentLocationFx = createEffect((urls: string[]) => {
+  return Promise.all(
+    urls.map(async url => {
+      try {
+        const response = await fetch(url);
+        const json = await response.json();
+        return json;
+      } catch (error) {
+        console.log(error);
+      }
+    })
+  );
+});
+export const $characterInfoAtCurrentLocation = createStore<ICharacterInfo[]>(
+  []
+).on(
+  getCharacterInfoAtCurrentLocationFx.doneData,
+  (_, characterInfo) => characterInfo
+);
+sample({
+  clock: setLocationInfoUrl,
+  source: $locationInfoUrl,
+  target: getLocationInfoFX,
+});
+sample({
+  clock: getLocationInfoFX.doneData,
+  source: $locationInfo,
+  fn: (info) => info ? info.residents : [],
+  target: getCharacterInfoAtCurrentLocationFx,
+});
+
 export const getInfoEpisode = async (numEpisodes: number) => {
   try {
     const response = await fetch(`${URL.episodes}/${numEpisodes}`);

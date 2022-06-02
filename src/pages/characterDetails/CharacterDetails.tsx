@@ -1,5 +1,6 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { $currentCharacterInfo, setCurrentCharacterInfo } from "../../store";
 import { storage } from "../../tools/storage";
@@ -12,6 +13,7 @@ const CharacterDetails: React.FC = () => {
       currentCharacterInfo ?? storage.getCurrentCharacterInfo()
     );
   }, []);
+  
   return (
     <main className="main">
       <div className="main__detalis detalis">
@@ -41,9 +43,9 @@ const CharacterDetails: React.FC = () => {
                   Последняя локация: {currentCharacterInfo.location.name}
                 </div>
                 {currentCharacterInfo.location.name === "unknown" ? null : (
-                  <div className="detalis-info__btn">
+                  <Link to={`/locations/${currentCharacterInfo.location.name}`} className="detalis-info__btn">
                     Подробнее о последней локации
-                  </div>
+                  </Link>
                 )}
               </div>
             </div>

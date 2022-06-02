@@ -5,7 +5,7 @@ export interface IEpisode {
   episode: string;
   characters: string[];
   episodeNum?: number;
-  season?: number
+  season?: number;
 }
 export interface ISeason {
   info: {
@@ -27,4 +27,10 @@ export interface ICharacterInfo {
     name: string;
   };
   created: string;
+}
+export interface ILocationInfo {
+  type: string;
+  residents: string[];
+  name: string;
+  dimension: string;
 }

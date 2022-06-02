@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { setCurrentCharacterInfo } from "../../../store";
 import { storage } from "../../../tools/storage";
 import { ICharacterInfo } from "../../../Types/types";
@@ -11,10 +11,9 @@ const CharacterInstance: React.FC<CharacterInstanceProps> = ({
   characterInfo,
 }) => {
   const { id } = useParams();
-  const currentPath = useLocation();
   return (
     <Link
-      to={`${currentPath.pathname}${id}/detalis`}
+      to={`/info/${id}/detalis`}
       className="characters-info__character character"
       onClick={() => {
         if (characterInfo !== null) {
