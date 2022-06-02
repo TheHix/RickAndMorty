@@ -1,4 +1,10 @@
-import { createEffect, createEvent, createStore, forward, sample } from "effector";
+import {
+  createEffect,
+  createEvent,
+  createStore,
+  forward,
+  sample,
+} from "effector";
 import { URL } from "../API/constants";
 import { getConfidenceIntervalBetweenEpisodes } from "../tools/date";
 import { ICharacterInfo, IEpisode, ISeason } from "../Types/types";
@@ -12,6 +18,7 @@ export const setCurrentCharacterInfo = createEvent<ICharacterInfo | null>();
 export const getCharactersUrls = createEffect();
 export const setSeasons = createEvent();
 export const assignSeries = createEvent();
+export const getEpisodeCount = createEvent();
 
 export const getSeasonFx = createEffect(async (page: number = 1) => {
   try {
@@ -56,16 +63,15 @@ export const $episodeCount = createStore<number>(0).on(
   (_, num) => num
 );
 
-export const $seasons = createStore<IEpisode[][]>([]).on(
-  setSeasons,
-  (_, seasons) => seasons
-).on(assignSeries, (state) => {
-  return state.map((episodes:IEpisode[], season: number) => {
-    return episodes.map((episode: IEpisode, episodeNum: number) => {
-      return {...episode, episodeNum: episodeNum + 1, season: season + 1}
-    })
-  })
-});
+export const $seasons = createStore<IEpisode[][]>([])
+  .on(setSeasons, (_, seasons) => seasons)
+  .on(assignSeries, state => {
+    return state.map((episodes: IEpisode[], season: number) => {
+      return episodes.map((episode: IEpisode, episodeNum: number) => {
+        return { ...episode, episodeNum: episodeNum + 1, season: season + 1 };
+      });
+    });
+  });
 
 const splitBySeason = (episodes: IEpisode[]) => {
   const locEpisodes = [...episodes];
@@ -92,8 +98,8 @@ const splitBySeason = (episodes: IEpisode[]) => {
 
 forward({
   from: setSeasons,
-  to: assignSeries
-})
+  to: assignSeries,
+});
 sample({
   clock: getInfoEpisodesFx.doneData,
   target: setSeasons,
@@ -104,6 +110,10 @@ sample({
   clock: getEpisodeCountFX.doneData,
   target: getInfoEpisodesFx,
   source: $episodeCount,
+});
+forward({
+  from: getEpisodeCount,
+  to: getEpisodeCountFX,
 });
 const getCharactersUrlsFx = createEffect(async (id: number) => {
   try {
@@ -171,7 +181,6 @@ const $currentCharacterInfo = createStore<ICharacterInfo | null>(null).on(
 );
 
 const $currentId = createStore<number>(0).on(setCurrentId, (_, id) => id);
-
 
 sample({
   clock: setCurrentId,
