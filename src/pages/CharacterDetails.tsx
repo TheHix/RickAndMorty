@@ -1,24 +1,24 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
-import {
-  $currentCharacterInfo,
-  setCurrentCharacterInfo,
-} from "../store";
+import Loader from "../components/Loader";
+import { $currentCharacterInfo, setCurrentCharacterInfo } from "../store";
 import { storage } from "../tools/storage";
 
 const CharacterDetails: React.FC = () => {
   const currentCharacterInfo = useStore($currentCharacterInfo);
-  setCurrentCharacterInfo(
-    currentCharacterInfo ?? storage.getCurrentCharacterInfo()
-  );
-  useEffect(() => {
 
-  }, [])
+  useEffect(() => {
+    if (currentCharacterInfo !== storage.getCurrentCharacterInfo()) {
+      setCurrentCharacterInfo(
+        currentCharacterInfo ?? storage.getCurrentCharacterInfo()
+      );
+    }
+  }, []);
   return (
     <main className="main">
       <div className="main__detalis detalis">
         <div className="detalis__container container">
-          {currentCharacterInfo !== null ? (
+          {!!currentCharacterInfo ? (
             <div className="detalis__body">
               <div className="detalis__img">
                 <img src={currentCharacterInfo.image} alt="" />
@@ -49,7 +49,9 @@ const CharacterDetails: React.FC = () => {
                 )}
               </div>
             </div>
-          ) : null}
+          ) : (
+            <Loader />
+          )}
         </div>
       </div>
     </main>

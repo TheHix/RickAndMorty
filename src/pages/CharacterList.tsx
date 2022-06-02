@@ -2,6 +2,7 @@ import { useStore } from "effector-react";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CharacterInstance from "../components/characters/CharacterInstance";
+import Loader from "../components/Loader";
 import {
   $characterInfo,
   $currentEpisode,
@@ -14,16 +15,21 @@ import { ICharacterInfo } from "../Types/types";
 const CharacterList: React.FC = () => {
   const characterInfo = useStore($characterInfo);
   const currentEpisode = useStore($currentEpisode);
-  setCurrentEpisode(currentEpisode ?? storage.getCurrentEpisode());
-  
+
   const { id } = useParams();
 
+  useEffect(() => {
+    if (currentEpisode !== storage.getCurrentEpisode()) {
+      setCurrentEpisode(currentEpisode ?? storage.getCurrentEpisode());
+    }
+  }, []);
+  
   useEffect(() => {
     if (id) {
       setCurrentId(+id);
     }
   }, [id]);
-  
+
   return (
     <main className="main">
       <div className="main__info info">
@@ -36,8 +42,7 @@ const CharacterList: React.FC = () => {
                     {currentEpisode?.name}
                   </div>
                   <div className="episode-info__item">
-                    {currentEpisode.season} сезон{" "}
-                    {currentEpisode.episodeNum}{" "}
+                    {currentEpisode.season} сезон {currentEpisode.episodeNum}{" "}
                     серия
                   </div>
                   <div className="episode-info__item">
@@ -50,14 +55,23 @@ const CharacterList: React.FC = () => {
                     ID: {currentEpisode.episode}
                   </div>
                 </>
-              ) : null}
+              ) : (
+                <Loader />
+              )}
             </div>
             <div className="info__characters characters-info">
               <h1 className="characters-info__title">Персонажи</h1>
               <div className="characters-info__body">
-                {characterInfo.map((character: ICharacterInfo, index: number) => {
-                  return <CharacterInstance key={index} characterInfo={character} />;
-                })}
+                {characterInfo.map(
+                  (character: ICharacterInfo, index: number) => {
+                    return (
+                      <CharacterInstance
+                        key={index}
+                        characterInfo={character}
+                      />
+                    );
+                  }
+                )}
               </div>
             </div>
           </div>
