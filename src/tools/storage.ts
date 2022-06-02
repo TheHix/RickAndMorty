@@ -1,4 +1,4 @@
-import { ICharacterInfo } from "../Types/episodes";
+import { ICharacterInfo, IEpisode } from "../Types/types";
 
 export const storage = {
     getCurrentCharacterInfo() {
@@ -9,5 +9,14 @@ export const storage = {
     },
     saveCurrentCharacterInfo(item: ICharacterInfo) {
         localStorage.setItem("currentCharacterInfo", JSON.stringify(item));
+    },
+    getCurrentEpisode() {
+        const currentEpisodeJson = localStorage.getItem("currentEpisode");
+        if (currentEpisodeJson !== null) {
+            return JSON.parse(currentEpisodeJson);
+        }
+    },
+    saveCurrentEpisode(item: IEpisode) {
+        localStorage.setItem("currentEpisode", JSON.stringify(item));
     }
 }
