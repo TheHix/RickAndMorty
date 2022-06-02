@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { setCurrentCharacterInfo } from "../../store/store";
 import { storage } from "../../tools/storage";
 import { ICharacterInfo } from "../../Types/episodes";
+import Loader from "../Loader";
 interface CharacterInstanceProps {
   url: string;
 }
@@ -55,7 +56,7 @@ const CharacterInstance: React.FC<CharacterInstanceProps> = ({ url }) => {
           </div>
         </>
       ) : (
-        <div>загрузка...</div>
+        <Loader/>
       )}
     </Link>
   );
