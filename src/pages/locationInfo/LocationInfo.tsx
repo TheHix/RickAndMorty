@@ -8,8 +8,7 @@ import {
   $locationInfo,
   setLocationInfoUrl,
 } from "../../store";
-import { ICharacterInfo } from "../../Types/types";
-import CharacterInstance from "../episodeDetails/characters/CharacterInstance";
+import { storage } from "../../tools/storage";
 
 const LocationInfo = () => {
   const characterInfoAtCurrentLocation = useStore(
@@ -18,11 +17,8 @@ const LocationInfo = () => {
   const currentCharacterInfo = useStore($currentCharacterInfo);
   const locationInfo = useStore($locationInfo);
   useEffect(() => {
-    if (currentCharacterInfo !== null) {
-      setLocationInfoUrl(currentCharacterInfo?.location.url);
-    }
+    setLocationInfoUrl(currentCharacterInfo?.location.url ?? storage.getLocation());
   }, []);
-  console.log(locationInfo, characterInfoAtCurrentLocation);
   return (
     <main className="main">
       <div className="main__locaion locaion">

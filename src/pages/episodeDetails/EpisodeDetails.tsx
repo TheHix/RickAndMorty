@@ -8,7 +8,7 @@ import { storage } from "../../tools/storage";
 const EpisodeDetails: React.FC = () => {
   const currentEpisode = useStore($currentEpisode);
   const { id } = useParams();
-
+  
   useEffect(() => {
     setCurrentEpisode(currentEpisode ?? storage.getCurrentEpisode());
   }, []);
