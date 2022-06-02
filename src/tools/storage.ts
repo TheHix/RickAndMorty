@@ -18,5 +18,14 @@ export const storage = {
     },
     saveCurrentEpisode(item: IEpisode) {
         localStorage.setItem("currentEpisode", JSON.stringify(item));
+    },
+    getLocation() {
+        const locationJson = localStorage.getItem("location");
+        if (locationJson !== null) {
+            return JSON.parse(locationJson);
+        }
+    },
+    saveLocation(item: any) {
+        localStorage.setItem("location", JSON.stringify(item));
     }
 }
