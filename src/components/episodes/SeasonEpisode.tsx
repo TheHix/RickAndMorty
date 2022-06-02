@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { IEpisode } from "../../Types/episodes";
+import { IEpisode } from "../../Types/types";
 interface SeasonEpisodeProps {
   item: IEpisode;
   number: number;

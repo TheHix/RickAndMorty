@@ -1,33 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { setCurrentCharacterInfo } from "../../store/store";
+import { setCurrentCharacterInfo } from "../../store";
 import { storage } from "../../tools/storage";
-import { ICharacterInfo } from "../../Types/episodes";
+import { ICharacterInfo } from "../../Types/types";
 import Loader from "../Loader";
 interface CharacterInstanceProps {
-  url: string;
+  characterInfo: ICharacterInfo;
 }
-const CharacterInstance: React.FC<CharacterInstanceProps> = ({ url }) => {
-  const [characterInfo, setCharacterInfo] = useState<ICharacterInfo | null>(
-    null
-  );
-  const getCharacterInfo = async (url: string) => {
-    const res = await fetch(url);
-    const json = await res.json();
-    setCharacterInfo(json);
-  };
-
+const CharacterInstance: React.FC<CharacterInstanceProps> = ({
+  characterInfo,
+}) => {
   const { id } = useParams();
   const currentPath = useLocation();
-
-  useEffect(() => {
-    getCharacterInfo(url);
-  }, []);
-
   return (
     <Link
       to={`${currentPath.pathname}${id}/detalis`}
-      className="info__character character"
+      className="characters-info__character character"
       onClick={() => {
         if (characterInfo !== null) {
           storage.saveCurrentCharacterInfo(characterInfo);
@@ -56,7 +44,7 @@ const CharacterInstance: React.FC<CharacterInstanceProps> = ({ url }) => {
           </div>
         </>
       ) : (
-        <Loader/>
+        <Loader />
       )}
     </Link>
   );

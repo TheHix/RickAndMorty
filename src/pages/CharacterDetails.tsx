@@ -1,15 +1,19 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
-import { $currentCharacterInfo, setCurrentCharacterInfo } from "../store/store";
+import {
+  $currentCharacterInfo,
+  setCurrentCharacterInfo,
+} from "../store";
 import { storage } from "../tools/storage";
 
 const CharacterDetails: React.FC = () => {
   const currentCharacterInfo = useStore($currentCharacterInfo);
+  setCurrentCharacterInfo(
+    currentCharacterInfo ?? storage.getCurrentCharacterInfo()
+  );
   useEffect(() => {
-    setCurrentCharacterInfo(
-      currentCharacterInfo ?? storage.getCurrentCharacterInfo()
-    );
-  }, []);
+
+  }, [])
   return (
     <main className="main">
       <div className="main__detalis detalis">
@@ -39,7 +43,9 @@ const CharacterDetails: React.FC = () => {
                   Последняя локация: {currentCharacterInfo.location.name}
                 </div>
                 {currentCharacterInfo.location.name === "unknown" ? null : (
-                  <div className="detalis-info__btn">Подробнее о последней локации</div>
+                  <div className="detalis-info__btn">
+                    Подробнее о последней локации
+                  </div>
                 )}
               </div>
             </div>
