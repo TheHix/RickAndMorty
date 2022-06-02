@@ -5,9 +5,13 @@
     background: #FFFFFFFF;
     border-radius: 20px;
     align-items: center;
+    &:hover {
+        box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    }
     @media screen and (max-width: 500px) {
         flex-direction: column;
     }
+
     &__img {
         margin-right: 60px;
         height: 180px;
@@ -15,11 +19,16 @@
         & img {
             height: 100%;
             border-radius: 20px;
-            @media screen and (max-width: 500px) {
-                margin-bottom: 5px;
-            }
+
         }
-        
+
+        @media screen and (max-width: 500px) {
+            margin-bottom: 5px;
+        }
+
+        @media screen and (max-width: 500px) {
+            margin-right: 0px;
+        }
     }
 
     &__text {
@@ -41,6 +50,7 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
+
         @media screen and (max-width: 1110px) {
             grid-template-columns: repeat(1, 1fr);
         }

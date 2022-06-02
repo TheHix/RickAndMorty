@@ -2,6 +2,8 @@
 @import "./components/header";
 @import "./components/season";
 @import "./components/info";
+@import "./components/loader";
+@import "./components/characterDetails";
 
 body {
   background: #e6e6e6;
@@ -20,7 +22,6 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding-bottom: 40px;
 }
 
 .container {
@@ -31,5 +32,11 @@ body {
 }
 
 main {
+  margin-top: 110px;
+
+  @media screen and (max-width: 503px) {
+    margin-top: 200px;
+  }
+
   flex: 1 1 auto;
 }

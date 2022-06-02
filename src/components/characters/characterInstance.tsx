@@ -1,26 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
+import { setCurrentCharacterInfo } from "../../store/store";
+import { storage } from "../../tools/storage";
 import { ICharacterInfo } from "../../Types/episodes";
 interface CharacterInstanceProps {
   url: string;
 }
 const CharacterInstance: React.FC<CharacterInstanceProps> = ({ url }) => {
-  const [characterInfo, setCharacterInfo] = useState<ICharacterInfo | null>(null);
+  const [characterInfo, setCharacterInfo] = useState<ICharacterInfo | null>(
+    null
+  );
   const getCharacterInfo = async (url: string) => {
     const res = await fetch(url);
     const json = await res.json();
     setCharacterInfo(json);
   };
-  
+
   const { id } = useParams();
-  const currentPath = useLocation()
+  const currentPath = useLocation();
 
   useEffect(() => {
     getCharacterInfo(url);
   }, []);
-  
+
   return (
-    <Link to={`${currentPath.pathname}${id}/detalis`} className="info__character character">
+    <Link
+      to={`${currentPath.pathname}${id}/detalis`}
+      className="info__character character"
+      onClick={() => {
+        if (characterInfo !== null) {
+          storage.saveCurrentCharacterInfo(characterInfo);
+        }
+        setCurrentCharacterInfo(characterInfo);
+      }}
+    >
       {characterInfo !== null ? (
         <>
           <div className="character__img">
@@ -37,10 +50,7 @@ const CharacterInstance: React.FC<CharacterInstanceProps> = ({ url }) => {
               Вид: {characterInfo.species}
             </div>
             <div className="text-character__item">
-              Гендер: {characterInfo.gender}
-            </div>
-            <div className="text-character__item">
-              Локация: {characterInfo.location.name}
+              Пол: {characterInfo.gender}
             </div>
           </div>
         </>

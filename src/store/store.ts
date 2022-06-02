@@ -1,11 +1,12 @@
-import { createEffect, createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore, sample } from "effector";
 import { URL } from "../API/constants";
-import { IEpisode, ISeason } from "../Types/episodes";
+import { ICharacterInfo, IEpisode, ISeason } from "../Types/episodes";
 
 export const addSeason = createEvent<ISeason>();
 export const seasonsFilter = createEvent<number>();
 export const season = createEvent<IEpisode>();
-export const setCharacterInfo = createEvent();
+
+export const setCurrentCharacterInfo = createEvent<ICharacterInfo | null>();
 
 export const getSeasonFx = createEffect(async (page: number = 1) => {
   try {
@@ -30,6 +31,23 @@ export const $characterUrls = createStore<string[]>([]).on(
   getCharactersUrlsFx.doneData,
   (_, charactersUrl) => charactersUrl
 );
+
+export const $currentCharacterInfo = createStore<ICharacterInfo | null>(
+  null
+).on(setCurrentCharacterInfo, (_, characterInfo) => characterInfo);
+
+$currentCharacterInfo.watch(status => {
+  console.log(status);
+});
+// sample({
+//   source: $characterUrls,
+//   target: getCharactersInfoFX,
+//   clock: getCharactersUrlsFx.doneData,
+// })
+// sample({
+//   clock: getCharactersInfoFX.doneData,
+
+// })
 
 export const $seasones = createStore<ISeason[]>([])
   .on(addSeason, (state, newSeson) => [...state, newSeson])

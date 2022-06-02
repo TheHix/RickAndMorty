@@ -20,4 +20,7 @@ export interface ICharacterInfo {
   location: {
     name: string;
   };
+  origin: {
+    name: string;
+  };
 }
