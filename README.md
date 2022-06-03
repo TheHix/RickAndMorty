@@ -17,7 +17,7 @@ npm install
 npm start
 ``
 
-## Используемые технологии
+## Использованные технологии
 - React
 - TypeScript
 - Effector
