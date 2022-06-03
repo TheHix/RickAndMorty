@@ -9,8 +9,8 @@ const MenuList:React.FC = () => {
   return (
     <ul className="dropdown__info-list dropdown-menu" >
       {
-        seasonsList.map((season) => {
-          return <MenuItem num={season[0].season} key={season[0].season}/>
+        seasonsList.map((season:any) => {
+          return <MenuItem num={season.episodes[0].season} key={season.episodes[0].season} condition = {season.condition}/>
         })
       }
     </ul>

@@ -16,7 +16,7 @@ const Home: React.FC = () => {
     <main className="main">
       <div className="main__info info">
         <div className="info__container container">
-          {seasons.map((currentSeasone: IEpisode[], index: number) => {
+          {seasons.map((currentSeasone: any, index: number) => {
             return (
               <Season
                 key={index}

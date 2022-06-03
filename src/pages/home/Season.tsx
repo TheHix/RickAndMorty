@@ -1,49 +1,36 @@
-import React, { useMemo, useState } from "react";
-import { IEpisode } from "../../Types/types";
-import SeasonEpisode from "./SeasonEpisode";
+import React, { useState } from "react";
+import EpisodeSort from "../../components/EpisodeSort";
+
 
 interface SeasonProps {
   seasonNumber: string;
-  seasoneInfo: IEpisode[];
+  seasoneInfo: any;
 }
 const Season: React.FC<SeasonProps> = ({ seasonNumber, seasoneInfo }) => {
-  const [episodes, ] = useState(seasoneInfo);
   const [inpitValue, setInpitValue] = useState("");
-
-  const foundEpisodes = useMemo(() => {
-    return episodes.filter(episode => {
-      return episode.name.toLowerCase().includes(inpitValue.toLowerCase());
-    });
-  }, [inpitValue]);
-   
   return (
-    <div className="season">
-      <div className="season__title-block">
-        <div className="season__title">Сезон {seasonNumber}</div>
-        <input
-          value={inpitValue}
-          onChange={e => setInpitValue(e.target.value)}
-          type="text"
-          className="season__search"
-          placeholder="Найти серию"
-        />
-      </div>
-      {foundEpisodes.length ? (
-        <div className="season__episodes">
-          {foundEpisodes.map((episode: IEpisode, i) => {
-            return (
-              <SeasonEpisode
-                item={episode}
-                number={episode.episodeNum ? episode.episodeNum: i}
-                key={episode.id}
-              />
-            );
-          })}
+    <>
+      {seasoneInfo.condition === true ? (
+        <div className="season">
+          <div className="season__title-block">
+            <div className="season__title">Сезон {seasonNumber}</div>
+            <input
+              value={inpitValue}
+              onChange={e => setInpitValue(e.target.value)}
+              type="text"
+              className="season__search"
+              placeholder="Найти серию"
+            />
+          </div>
+          <EpisodeSort
+            inpitValue={inpitValue}
+            seasoneInfo={seasoneInfo.episodes}
+          />
         </div>
       ) : (
-        <div className="season__error">Таких серий нет :(</div>
+        null
       )}
-    </div>
+    </>
   );
 };
 
