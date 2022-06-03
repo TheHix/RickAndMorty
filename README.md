@@ -12,7 +12,7 @@ git clone https://github.com/TheHix/RickAndMorty.git
 ``
 npm install
 ``
-3. Запоустите локальный сервер
+3. Запустите проект локально
 ``
 npm start
 ``
