@@ -12,6 +12,7 @@ import {
   IEpisode,
   ILocationInfo,
   ISeason,
+  ISeasonWrapper,
 } from "../Types/types";
 
 export const addSeason = createEvent<ISeason>();
@@ -25,7 +26,9 @@ export const setSeasons = createEvent();
 export const assignSeries = createEvent();
 export const getEpisodeCount = createEvent();
 export const setLocationInfoUrl = createEvent<string>();
-export const setSort = createEvent<string>()
+export const setSort = createEvent<string>();
+export const setCondition = createEvent<number>();
+
 export const getSeasonFx = createEffect(async (page: number = 1) => {
   try {
     const response = await fetch(`${URL.episodes}?page=${page}`);
@@ -51,9 +54,9 @@ export const $sort = createStore<string>("по эпизоду").on(
   setSort,
   (_, sort) => sort
 );
-$sort.watch((state) => {
+$sort.watch(state => {
   console.log(state);
-})
+});
 export const $locationInfo = createStore<ILocationInfo | null>(null).on(
   getLocationInfoFX.doneData,
   (_, locationInfo) => locationInfo
@@ -124,16 +127,24 @@ export const $episodeCount = createStore<number>(0).on(
   (_, num) => num
 );
 
-export const $seasons = createStore<IEpisode[][]>([])
+export const $seasons = createStore<any>([])
   .on(setSeasons, (_, seasons) => seasons)
   .on(assignSeries, state => {
     return state.map((episodes: IEpisode[], season: number) => {
-      return episodes.map((episode: IEpisode, episodeNum: number) => {
-        return { ...episode, episodeNum: episodeNum + 1, season: season + 1 };
-      });
+      return {
+        condition: true,
+        episodes: episodes.map((episode: IEpisode, episodeNum: number) => {
+          return { ...episode, episodeNum: episodeNum + 1, season: season + 1 };
+        }),
+      };
     });
+  })
+  .on(setCondition, (state, num) => {
+    const cuurentState = [...state];
+    cuurentState[num].condition = !cuurentState[num].condition;
+    return cuurentState
   });
-
+  $seasons.watch(state => console.log(state));
 const splitBySeason = (episodes: IEpisode[]) => {
   const locEpisodes = [...episodes];
   const seasons: IEpisode[][] = [];

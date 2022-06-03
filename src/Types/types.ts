@@ -7,6 +7,10 @@ export interface IEpisode {
   episodeNum: number;
   season: number;
 }
+export interface ISeasonWrapper {
+  condition: boolean;
+  episodes: IEpisode[];
+}
 export interface ISeason {
   info: {
     pages: number;
