@@ -1,9 +1,9 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CharacterList from "./characters/CharacterList";
 import { $currentEpisode, setCurrentEpisode, setCurrentId } from "../../store";
 import { storage } from "../../tools/storage";
+import CharacterWrapper from "./characters/CharacterWrapper";
 
 const EpisodeDetails: React.FC = () => {
   const currentEpisode = useStore($currentEpisode);
@@ -46,7 +46,7 @@ const EpisodeDetails: React.FC = () => {
                 </>
               ) : null}
             </div>
-            <CharacterList />
+            <CharacterWrapper/>
           </div>
         </div>
       </div>

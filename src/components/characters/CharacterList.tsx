@@ -1,13 +1,11 @@
 import React from "react";
-import CharacterInstance from "../pages/episodeDetails/characters/CharacterInstance";
-import { ICharacterInfo } from "../Types/types";
-import Loader from "./Loader";
+import CharacterInstance from "./CharacterInstance";
+import { ICharacterInfo } from "../../Types/types";
+import Loader from "../Loader";
 interface CharacterListInfoProps {
   characterInfo: ICharacterInfo[];
 }
-const CharacterListInfo: React.FC<CharacterListInfoProps> = ({
-  characterInfo,
-}) => {
+const CharacterList: React.FC<CharacterListInfoProps> = ({ characterInfo }) => {
   return (
     <div className="info__characters characters-info">
       <h1 className="characters-info__title">Персонажи</h1>
@@ -24,4 +22,4 @@ const CharacterListInfo: React.FC<CharacterListInfoProps> = ({
   );
 };
 
-export default CharacterListInfo;
+export default CharacterList;

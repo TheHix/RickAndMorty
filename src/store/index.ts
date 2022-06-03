@@ -7,7 +7,12 @@ import {
 } from "effector";
 import { URL } from "../API/constants";
 import { getConfidenceIntervalBetweenEpisodes } from "../tools/date";
-import { ICharacterInfo, IEpisode, ILocationInfo, ISeason } from "../Types/types";
+import {
+  ICharacterInfo,
+  IEpisode,
+  ILocationInfo,
+  ISeason,
+} from "../Types/types";
 
 export const addSeason = createEvent<ISeason>();
 export const seasonsFilter = createEvent<number>();
@@ -20,7 +25,7 @@ export const setSeasons = createEvent();
 export const assignSeries = createEvent();
 export const getEpisodeCount = createEvent();
 export const setLocationInfoUrl = createEvent<string>();
-
+export const setSort = createEvent<string>()
 export const getSeasonFx = createEffect(async (page: number = 1) => {
   try {
     const response = await fetch(`${URL.episodes}?page=${page}`);
@@ -42,6 +47,13 @@ const $locationInfoUrl = createStore<string>("").on(
   (_, url) => url
 );
 
+export const $sort = createStore<string>("по эпизоду").on(
+  setSort,
+  (_, sort) => sort
+);
+$sort.watch((state) => {
+  console.log(state);
+})
 export const $locationInfo = createStore<ILocationInfo | null>(null).on(
   getLocationInfoFX.doneData,
   (_, locationInfo) => locationInfo
@@ -73,7 +85,7 @@ sample({
 sample({
   clock: getLocationInfoFX.doneData,
   source: $locationInfo,
-  fn: (info) => info ? info.residents : [],
+  fn: info => (info ? info.residents : []),
   target: getCharacterInfoAtCurrentLocationFx,
 });
 

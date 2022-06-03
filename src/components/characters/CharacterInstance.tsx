@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { setCurrentCharacterInfo } from "../../../store";
-import { storage } from "../../../tools/storage";
-import { ICharacterInfo } from "../../../Types/types";
-import Loader from "../../../components/Loader";
+import { setCurrentCharacterInfo } from "../../store";
+import { storage } from "../../tools/storage";
+import { ICharacterInfo } from "../../Types/types";
+import Loader from "../Loader";
 interface CharacterInstanceProps {
   characterInfo: ICharacterInfo;
 }

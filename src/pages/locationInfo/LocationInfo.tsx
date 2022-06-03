@@ -1,6 +1,6 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
-import CharacterListInfo from "../../components/CharacterListInfo";
+import CharacterList from "../../components/characters/CharacterList";
 import Loader from "../../components/Loader";
 import {
   $characterInfoAtCurrentLocation,
@@ -34,7 +34,7 @@ const LocationInfo = () => {
           ) : (
             <Loader />
           )}
-          <CharacterListInfo characterInfo={characterInfoAtCurrentLocation} />
+          <CharacterList characterInfo={characterInfoAtCurrentLocation} />
         </div>
       </div>
     </main>

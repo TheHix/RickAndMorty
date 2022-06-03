@@ -8,21 +8,21 @@ interface SeasonProps {
 }
 const Season: React.FC<SeasonProps> = ({ seasonNumber, seasoneInfo }) => {
   const [episodes, ] = useState(seasoneInfo);
-  const [value, setValue] = useState("");
+  const [inpitValue, setInpitValue] = useState("");
 
   const foundEpisodes = useMemo(() => {
     return episodes.filter(episode => {
-      return episode.name.toLowerCase().includes(value.toLowerCase());
+      return episode.name.toLowerCase().includes(inpitValue.toLowerCase());
     });
-  }, [value]);
+  }, [inpitValue]);
    
   return (
     <div className="season">
       <div className="season__title-block">
         <div className="season__title">Сезон {seasonNumber}</div>
         <input
-          value={value}
-          onChange={e => setValue(e.target.value)}
+          value={inpitValue}
+          onChange={e => setInpitValue(e.target.value)}
           type="text"
           className="season__search"
           placeholder="Найти серию"

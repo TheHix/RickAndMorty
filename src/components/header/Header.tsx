@@ -1,26 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
-import DropDownInfo from "./dropDown/DropDownInfo";
+import MenuList from "./dropDown/MenuList";
+import FilterBtn from "./FilterBtn";
+import SortBtn from "./SortBtn";
 
 const Header: React.FC = () => {
-  const [dropDownInfo, setDropDownInfo] = useState(false);
-
-  const wrapperRef = useRef<any>(null);
+  
   const url = useLocation();
   const nav = useNavigate();
   const goBack = () => nav(-1);
-  useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        setDropDownInfo(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [wrapperRef]);
+
+ 
   return (
     <header className="header">
       <div className="header__bg">
@@ -31,23 +22,8 @@ const Header: React.FC = () => {
             </Link>
             {url.pathname === "/" ? (
               <div className="header__dropdown dropdown">
-                <div className="dropdown-block" ref={wrapperRef}>
-                  <button
-                    onClick={e => {
-                      setDropDownInfo(!dropDownInfo);
-                    }}
-                    className="dropdown__info-btn dropdown-btn"
-                  >
-                    Выбрать сезон
-                  </button>
-                  {dropDownInfo && <DropDownInfo />}
-                </div>
-                <div className="dropdown-block">
-                  <select className="dropdown__sort-btn dropdown-btn btn-sort">
-                    <option className="btn-sort__item">по эпизоду</option>
-                    <option className="btn-sort__item">по названию</option>
-                  </select>
-                </div>
+                <FilterBtn/>
+                <SortBtn/>
               </div>
             ) : (
               <div onClick={goBack} className="header__back-btn">

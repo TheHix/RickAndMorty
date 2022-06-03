@@ -4,8 +4,8 @@ export interface IEpisode {
   name: string;
   episode: string;
   characters: string[];
-  episodeNum?: number;
-  season?: number;
+  episodeNum: number;
+  season: number;
 }
 export interface ISeason {
   info: {
