@@ -1,17 +1,14 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../../img/logo.png";
-import MenuList from "./dropDown/MenuList";
 import FilterBtn from "./FilterBtn";
 import SortBtn from "./SortBtn";
 
 const Header: React.FC = () => {
-  
   const url = useLocation();
   const nav = useNavigate();
   const goBack = () => nav(-1);
 
- 
   return (
     <header className="header">
       <div className="header__bg">
@@ -22,8 +19,8 @@ const Header: React.FC = () => {
             </Link>
             {url.pathname === "/" ? (
               <div className="header__dropdown dropdown">
-                <FilterBtn/>
-                <SortBtn/>
+                <FilterBtn />
+                <SortBtn />
               </div>
             ) : (
               <div onClick={goBack} className="header__back-btn">

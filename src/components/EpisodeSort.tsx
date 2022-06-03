@@ -1,12 +1,14 @@
 import { useStore } from "effector-react";
 import React, { useMemo, useState } from "react";
 import SeasonEpisode from "../pages/home/SeasonEpisode";
-import { $sort } from "../store";
+import { $sort } from "../store/store";
 import { IEpisode } from "../Types/types";
+
 interface episodeSortProps {
   seasoneInfo: IEpisode[];
   inpitValue: string;
 }
+
 const EpisodeSort: React.FC<episodeSortProps> = ({
   seasoneInfo,
   inpitValue,

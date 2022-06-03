@@ -7,6 +7,7 @@ export interface IEpisode {
   episodeNum: number;
   season: number;
 }
+export type seasonsType = ISeasonWrapper[] | IEpisode[][]
 export interface ISeasonWrapper {
   condition: boolean;
   episodes: IEpisode[];

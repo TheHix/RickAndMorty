@@ -1,6 +1,7 @@
 .detalis {
     display: flex;
     justify-content: center;
+
     &__body {
         width: fit-content;
         display: flex;
@@ -8,17 +9,21 @@
         padding: 40px;
         border-radius: 25px;
         align-items: center;
+
         @media screen and (max-width: 790px) {
             flex-direction: column;
         }
     }
+
     &__img {
         & img {
             border-radius: 25px;
             height: auto;
             width: 100%;
         }
+
         margin-right: 40px;
+
         @media screen and (max-width: 790px) {
             margin-right: 0px;
             margin-bottom: 20px;
@@ -30,13 +35,16 @@
 .detalis-info {
     &__item {
         font-size: 24px;
+
         &:not(:last-child) {
             margin-bottom: 20px;
         }
+
         @media screen and (max-width: 360px) {
             font-size: 18px;
         }
     }
+
     &__btn {
         color: inherit;
         cursor: pointer;
@@ -49,6 +57,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
+
         @media screen and (max-width: 360px) {
             font-size: 14px;
         }

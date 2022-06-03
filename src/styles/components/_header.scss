@@ -60,38 +60,46 @@
     width: 100%;
     margin-bottom: 30px;
     height: 80px;
+
     @media screen and (max-width: 503px) {
         height: 170px;
     }
+
     &__back-btn {
         margin-left: auto;
         color: #FFFFFF;
         cursor: pointer;
+
         &:hover {
-            text-decoration:underline;
+            text-decoration: underline;
         }
+
         @media screen and (max-width: 503px) {
             margin-left: 0;
             align-self: center;
         }
     }
+
     &__locations-btn {
         font-size: 20px;
         margin-left: auto;
         color: #FFFFFF;
+
         &:hover {
             cursor: pointer;
             text-decoration: underline;
         }
     }
+
     &__body {
         height: 100%;
         display: flex;
         align-items: center;
         padding: 8px 0px;
+
         @media screen and (max-width: 503px) {
             flex-direction: column;
-            
+
         }
     }
 
@@ -107,6 +115,7 @@
     &__dropdown {
         margin-left: auto;
         display: flex;
+
         @media screen and (max-width: 503px) {
             margin-left: 0;
         }
@@ -115,21 +124,27 @@
     &__logo {
         height: 65px;
         margin-right: 100px;
+
         @media screen and (max-width: 650px) {
             margin-right: 20px;
         }
+
         @media screen and (max-width: 550px) {
             height: 50px;
         }
+
         @media screen and (max-width: 503px) {
             height: 100px;
         }
+
         @media screen and (max-width: 503px) {
             margin-bottom: 10px;
         }
+
         @media screen and (max-width: 400px) {
             height: 80px
         }
+
         &:hover {
             cursor: pointer;
         }

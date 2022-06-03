@@ -7,17 +7,19 @@ import {
   $currentCharacterInfo,
   $locationInfo,
   setLocationInfoUrl,
-} from "../../store";
+} from "../../store/store";
 import { storage } from "../../tools/storage";
 
-const LocationInfo = () => {
+const LocationInfo: React.FC = () => {
   const characterInfoAtCurrentLocation = useStore(
     $characterInfoAtCurrentLocation
   );
   const currentCharacterInfo = useStore($currentCharacterInfo);
   const locationInfo = useStore($locationInfo);
   useEffect(() => {
-    setLocationInfoUrl(currentCharacterInfo?.location.url ?? storage.getLocation());
+    setLocationInfoUrl(
+      currentCharacterInfo?.location.url ?? storage.getLocation()
+    );
   }, []);
   return (
     <main className="main">

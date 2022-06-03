@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import EpisodeSort from "../../components/EpisodeSort";
-
+import { ISeasonWrapper } from "../../Types/types";
 
 interface SeasonProps {
   seasonNumber: string;
-  seasoneInfo: any;
+  seasoneInfo: ISeasonWrapper;
 }
 const Season: React.FC<SeasonProps> = ({ seasonNumber, seasoneInfo }) => {
   const [inpitValue, setInpitValue] = useState("");
@@ -27,9 +27,7 @@ const Season: React.FC<SeasonProps> = ({ seasonNumber, seasoneInfo }) => {
             seasoneInfo={seasoneInfo.episodes}
           />
         </div>
-      ) : (
-        null
-      )}
+      ) : null}
     </>
   );
 };

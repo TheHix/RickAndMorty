@@ -1,14 +1,14 @@
 import { useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { $currentEpisode, setCurrentEpisode, setCurrentId } from "../../store";
+import { $currentEpisode, setCurrentEpisode, setCurrentId } from "../../store/store";
 import { storage } from "../../tools/storage";
 import CharacterWrapper from "./characters/CharacterWrapper";
 
 const EpisodeDetails: React.FC = () => {
   const currentEpisode = useStore($currentEpisode);
   const { id } = useParams();
-  
+
   useEffect(() => {
     setCurrentEpisode(currentEpisode ?? storage.getCurrentEpisode());
   }, []);
@@ -46,7 +46,7 @@ const EpisodeDetails: React.FC = () => {
                 </>
               ) : null}
             </div>
-            <CharacterWrapper/>
+            <CharacterWrapper />
           </div>
         </div>
       </div>

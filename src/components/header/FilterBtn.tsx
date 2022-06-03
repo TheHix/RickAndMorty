@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import MenuList from "./dropDown/MenuList";
 
-const FilterBtn = () => {
+const FilterBtn: React.FC = () => {
   const [dropDownInfo, setDropDownInfo] = useState(false);
 
   const wrapperRef = useRef<any>(null);

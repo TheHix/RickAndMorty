@@ -1,8 +1,8 @@
 import { useStore } from "effector-react";
 import React from "react";
-import { $sort, setSort } from "../../store";
+import { $sort, setSort } from "../../store/store";
 
-const SortBtn = () => {
+const SortBtn: React.FC = () => {
   const sort = useStore($sort);
   return (
     <div className="dropdown-block">

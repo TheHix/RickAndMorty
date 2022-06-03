@@ -19,6 +19,7 @@
     &__title {
         font-size: 26px;
         margin-right: 40px;
+
         @media screen and (max-width: 570px) {
             margin-right: 20px;
         }
@@ -71,4 +72,3 @@
         }
     }
 }
-
