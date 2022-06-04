@@ -19,7 +19,6 @@ const EpisodeDetails: React.FC = () => {
       setCurrentId(+id);
     }
   }, [id]);
-  console.log(currentEpisode);
   
   return (
     <main className="main">
