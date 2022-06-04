@@ -12,28 +12,31 @@ export const getInfoEpisodesFx = createEffect(async (numEpisodes: number) => {
 
 //-------------------
 const getInfoEpisode = async (numEpisodes: number) => {
-    try {
-        const response = await fetch(`${URL.episodes}/${numEpisodes}`);
-        return response.json();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-//------------------- 
+  try {
+    const response = await fetch(`${URL.episodes}/${numEpisodes}`);
+    return response.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+//-------------------
 
 export const getCharacterInfoAtCurrentLocationFx = createEffect(
   (urls: string[]) => {
-    return Promise.all(
-      urls.map(async url => {
-        try {
-          const response = await fetch(url);
-          const json = await response.json();
-          return json;
-        } catch (error) {
-          console.log(error);
-        }
-      })
-    );
+    if (urls.length) {
+      return Promise.all(
+        urls.map(async url => {
+          try {
+            const response = await fetch(url);
+            const json = await response.json();
+            return json;
+          } catch (error) {
+            console.log(error);
+          }
+        })
+      );
+    }
+    return [];
   }
 );
 export const getCharactersUrlsFx = createEffect(async (id: number) => {

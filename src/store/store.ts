@@ -1,18 +1,13 @@
 import {
-  createEffect,
   createEvent,
   createStore,
   forward,
   sample,
 } from "effector";
-import { URL } from "../API/constants";
-import { getConfidenceIntervalBetweenEpisodes } from "../tools/date";
 import {
   ICharacterInfo,
   IEpisode,
   ILocationInfo,
-  ISeason,
-  ISeasonWrapper,
 } from "../Types/types";
 import {
   getCharacterInfoAtCurrentLocationFx,
