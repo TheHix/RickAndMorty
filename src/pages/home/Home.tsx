@@ -4,6 +4,7 @@ import Season from "./Season";
 
 import { $seasons, getEpisodeCount } from "../../store/store";
 import { ISeasonWrapper } from "../../Types/types";
+import Loader from "../../components/Loader";
 
 const Home: React.FC = () => {
   const seasons = useStore($seasons);
@@ -18,7 +19,8 @@ const Home: React.FC = () => {
     <main className="main">
       <div className="main__info info">
         <div className="info__container container">
-          {seasons.map((currentSeasone: ISeasonWrapper, index: number) => {
+
+          {seasons.length ? seasons.map((currentSeasone: ISeasonWrapper, index: number) => {
             return (
               <Season
                 key={index}
@@ -26,7 +28,10 @@ const Home: React.FC = () => {
                 seasoneInfo={currentSeasone}
               />
             );
-          })}
+          })
+          :
+          <Loader/>
+        }
         </div>
       </div>
     </main>
