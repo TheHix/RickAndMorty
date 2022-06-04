@@ -16,9 +16,7 @@ const CharacterInstance: React.FC<CharacterInstanceProps> = ({
       to={`/info/${id}/detalis`}
       className="characters-info__character character"
       onClick={() => {
-        if (characterInfo !== null) {
-          storage.saveCurrentCharacterInfo(characterInfo);
-        }
+        storage.saveCurrentCharacterInfo(characterInfo);
         setCurrentCharacterInfo(characterInfo);
       }}
     >

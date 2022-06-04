@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { setCurrentEpisode } from "../../store/store";
+import { storage } from "../../tools/storage";
 import { IEpisode } from "../../Types/types";
 interface SeasonEpisodeProps {
   item: IEpisode;
@@ -10,7 +12,14 @@ const SeasonEpisode: React.FC<SeasonEpisodeProps> = ({ item, number }) => {
   const url = useLocation();
 
   return (
-    <Link to={`${url.pathname}info/${id}`} className="season__episode episode">
+    <Link
+      to={`${url.pathname}info/${id}`}
+      onClick={() => {
+        storage.saveCurrentEpisode(item);
+        setCurrentEpisode(item);
+      }}
+      className="season__episode episode"
+    >
       <div className="episode__item episode__item-number">{number} эпизод</div>
       <div className="episode__item">{name}</div>
       <div className="episode__item">Дата выхода: {air_date}</div>
