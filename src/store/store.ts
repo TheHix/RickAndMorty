@@ -135,7 +135,14 @@ sample({
 sample({
   clock: getLocationInfoFx.doneData,
   source: $locationInfo,
-  fn: info => (info ? info.residents : []),
+  fn: info => {
+    const residentsUrl = info ? info.residents : [];
+    return residentsUrl
+      .map(resident => {
+        return resident.slice(resident.lastIndexOf("/") + 1);
+      })
+      .join(",");
+  },
   target: getCharacterInfoAtCurrentLocationFx,
 });
 

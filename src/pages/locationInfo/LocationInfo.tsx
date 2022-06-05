@@ -10,23 +10,12 @@ import {
 } from "../../store/store";
 import { storage } from "../../tools/storage";
 
-const scroll = (e: any) => {
-  if (
-    e.target.documentElement.scrollHeight -
-      (e.target.documentElement.scrollTop + window.innerHeight) <
-    100
-  ) {
-    console.log("scroll");
-  }
-};
-
 const LocationInfo: React.FC = () => {
   const characterInfoAtCurrentLocation = useStore(
     $characterInfoAtCurrentLocation
   );
   const currentCharacterInfo = useStore($currentCharacterInfo);
   const locationInfo = useStore($locationInfo);
-  const [fetching, setFetching] = useState<boolean>(true);
 
   useEffect(() => {
     if (currentCharacterInfo?.location.url !== storage.getLocation()) {
@@ -35,14 +24,7 @@ const LocationInfo: React.FC = () => {
       );
     }
   }, []);
-
-  useEffect(() => {
-    document.addEventListener("scroll", scroll);
-    return () => {
-      document.removeEventListener("scroll", scroll);
-    };
-  }, []);
-
+  
   return (
     <main className="main">
       <div className="main__locaion locaion">

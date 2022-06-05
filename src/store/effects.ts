@@ -22,18 +22,13 @@ const getInfoEpisode = async (numEpisodes: number) => {
 //-------------------
 
 export const getCharacterInfoAtCurrentLocationFx = createEffect(
-  (urls: string[]) => {
-    return Promise.all(
-      urls.map(async url => {
-        try {
-          const response = await fetch(url);
-          const json = await response.json();
-          return json;
-        } catch (error) {
-          console.log(error);
-        }
-      })
-    );
+  async (nums: string) => {
+    try {
+      const response = await fetch(`${URL.characters}/${nums}`);
+      return response.json();
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
 export const getCharactersUrlsFx = createEffect(async (id: number) => {
