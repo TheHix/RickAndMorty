@@ -15,7 +15,9 @@ const EpisodeDetails: React.FC = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    setCurrentEpisode(currentEpisode ?? storage.getCurrentEpisode());
+    if (currentEpisode !== storage.getCurrentEpisode()) {
+      setCurrentEpisode(currentEpisode ?? storage.getCurrentEpisode());
+    }
   }, []);
 
   useEffect(() => {

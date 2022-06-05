@@ -13,9 +13,11 @@ const CharacterDetails: React.FC = () => {
   const currentCharacterInfo = useStore($currentCharacterInfo);
 
   useEffect(() => {
-    setCurrentCharacterInfo(
-      currentCharacterInfo ?? storage.getCurrentCharacterInfo()
-    );
+    if (currentCharacterInfo !== storage.getCurrentCharacterInfo()) {
+      setCurrentCharacterInfo(
+        currentCharacterInfo ?? storage.getCurrentCharacterInfo()
+      );
+    }
   }, []);
 
   return (
