@@ -1,14 +1,5 @@
-import {
-  createEvent,
-  createStore,
-  forward,
-  sample,
-} from "effector";
-import {
-  ICharacterInfo,
-  IEpisode,
-  ILocationInfo,
-} from "../Types/types";
+import { createEvent, createStore, forward, sample } from "effector";
+import { ICharacterInfo, IEpisode, ILocationInfo } from "../Types/types";
 import {
   getCharacterInfoAtCurrentLocationFx,
   getcharacterInfoFx,

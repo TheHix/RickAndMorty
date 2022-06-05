@@ -10,8 +10,6 @@ const MenuList: React.FC = () => {
   return (
     <ul className="dropdown__info-list dropdown-menu">
       {seasonsList.map((season: ISeasonWrapper) => {
-        console.log(season);
-
         return (
           <MenuItem
             num={season.episodes[0].season}
