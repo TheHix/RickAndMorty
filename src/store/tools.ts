@@ -23,7 +23,7 @@ export const splitBySeason = (episodes: IEpisode[]) => {
   }
   return seasons;
 };
-export const getAllNumCharacters = (characterUrls: any[]): string => {
+export const getAllNumCharacters = (characterUrls: string[]): string => {
   return characterUrls
     .map(characterUrl => {
       return characterUrl.slice(characterUrl.lastIndexOf("/") + 1);
