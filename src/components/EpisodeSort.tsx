@@ -1,5 +1,5 @@
 import { useStore } from "effector-react";
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import SeasonEpisode from "../pages/home/SeasonEpisode";
 import { $sort } from "../store/store";
 import { IEpisode } from "../Types/types";
@@ -13,17 +13,15 @@ const EpisodeSort: React.FC<episodeSortProps> = ({
   seasoneInfo,
   inpitValue,
 }) => {
-  const [episodes] = useState(seasoneInfo);
-
   const sort = useStore($sort);
 
   const sortEpisodes = useMemo(() => {
     if (sort === "по эпизоду") {
-      return [...episodes].sort((a, b) => {
+      return [...seasoneInfo].sort((a, b) => {
         return a.episode.localeCompare(b.episode);
       });
     } else if (sort === "по названию")
-      return [...episodes].sort((a, b) => {
+      return [...seasoneInfo].sort((a, b) => {
         return a.name.localeCompare(b.name);
       });
   }, [sort]);

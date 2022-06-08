@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import {
+  $characterUrls,
   $currentEpisode,
   setCurrentEpisode,
   setCurrentId,
@@ -25,7 +26,8 @@ const EpisodeDetails: React.FC = () => {
       setCurrentId(+id);
     }
   }, [id]);
-
+  console.log(useStore($characterUrls));
+  
   return (
     <main className="main">
       <div className="main__info info">

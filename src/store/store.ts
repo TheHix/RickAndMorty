@@ -10,7 +10,9 @@ import {
   getlocationDataFx,
   getLocationInfoFx,
 } from "./effects";
-import { splitBySeason } from "./tools";
+import { getAllNumCharacters, splitBySeason } from "./tools";
+
+//события
 
 const setCurrentId = createEvent<number>();
 const setCurrentEpisode = createEvent<IEpisode | null>();
@@ -21,6 +23,8 @@ const getEpisodeCount = createEvent();
 const setLocationInfoUrl = createEvent<string>();
 const setSort = createEvent<string>();
 const setCondition = createEvent<number>();
+
+//сторы
 
 const $locationInfoUrl = createStore<string>("").on(
   setLocationInfoUrl,
@@ -48,6 +52,7 @@ const $episodeCount = createStore<number>(0).on(
   getEpisodeCountFx.doneData,
   (_, num) => num
 );
+
 const $seasons = createStore<any>([])
   .on(setSeasons, (_, seasons) => seasons)
   .on(assignSeries, state => {
@@ -70,6 +75,7 @@ const $countSeasons = createStore<number>(0).on(
   getCountSeasonsFx.doneData,
   (_, count) => count
 );
+
 const $locationData = createStore<ILocationInfo | null>(null).on(
   getlocationDataFx.doneData,
   (_, locData) => locData
@@ -79,20 +85,25 @@ const $characterUrls = createStore<string[]>([]).on(
   getCharactersUrlsFx.doneData,
   (_, charactersUrl) => charactersUrl
 );
+
 const $characterInfo = createStore<ICharacterInfo[]>([]).on(
   getcharacterInfoFx.doneData,
   (_, info) => info
 );
+
 const $currentEpisode = createStore<IEpisode | null>(null).on(
   setCurrentEpisode,
   (_, currentEpisode) => currentEpisode
 );
+
 const $currentCharacterInfo = createStore<ICharacterInfo | null>(null).on(
   setCurrentCharacterInfo,
   (_, characterInfo) => characterInfo
 );
 
 const $currentId = createStore<number>(0).on(setCurrentId, (_, id) => id);
+
+// цепочки связей
 
 forward({
   from: setSeasons,
@@ -113,7 +124,9 @@ forward({
   from: getEpisodeCount,
   to: getEpisodeCountFx,
 });
+
 //--------------
+
 sample({
   clock: setCurrentId,
   target: getCharactersUrlsFx,
@@ -122,11 +135,13 @@ sample({
 
 sample({
   source: $characterUrls,
+  fn: getAllNumCharacters,
   target: getcharacterInfoFx,
   clock: getCharactersUrlsFx.doneData,
 });
 
 //--------------
+
 sample({
   clock: setLocationInfoUrl,
   source: $locationInfoUrl,
@@ -135,19 +150,12 @@ sample({
 sample({
   clock: getLocationInfoFx.doneData,
   source: $locationInfo,
-  fn: info => {
-    const residentsUrl = info ? info.residents : [];
-    return residentsUrl
-      .map(resident => {
-        return resident.slice(resident.lastIndexOf("/") + 1);
-      })
-      .join(",");
-  },
+  fn: info => getAllNumCharacters(info ? info.residents : []),
   target: getCharacterInfoAtCurrentLocationFx,
 });
 
 export {
-  //events
+  //события
   setCurrentId,
   setCurrentEpisode,
   setCurrentCharacterInfo,
@@ -157,7 +165,7 @@ export {
   setLocationInfoUrl,
   setSort,
   setCondition,
-  //stores
+  //сторы
   $seasons,
   $characterInfoAtCurrentLocation,
   $sort,
