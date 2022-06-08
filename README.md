@@ -21,4 +21,4 @@ npm start
 - React
 - TypeScript
 - Effector
-- SCSS
+- SCSS + БЭМ
