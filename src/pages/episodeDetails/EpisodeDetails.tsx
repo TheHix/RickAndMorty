@@ -26,7 +26,6 @@ const EpisodeDetails: React.FC = () => {
       setCurrentId(+id);
     }
   }, [id]);
-  console.log(useStore($characterUrls));
   
   return (
     <main className="main">
